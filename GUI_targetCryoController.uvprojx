@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -51,7 +52,7 @@
           <OutputName>GUI_targetCryoController</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -257,17 +258,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -277,7 +278,7 @@
                 <Size>0x100000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT5>
@@ -337,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\lib\App_Layer;.\lib\Func_Layer;.\lib\HW_Layer;.\lib\SPL</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -380,12 +381,188 @@
       <Groups>
         <Group>
           <GroupName>App_Layer</GroupName>
+          <Files>
+            <File>
+              <FileName>GUI_cryoTargetController.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\App_Layer\GUI_cryoTargetController.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUI_cryoTargetController.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\App_Layer\GUI_cryoTargetController.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\App_Layer\main.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Func_Layer</GroupName>
+          <Files>
+            <File>
+              <FileName>Font.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\Func_Layer\Font.h</FilePath>
+            </File>
+            <File>
+              <FileName>GUI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\Func_Layer\GUI.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\Func_Layer\GUI.h</FilePath>
+            </File>
+            <File>
+              <FileName>link.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\Func_Layer\link.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>HW_Layer</GroupName>
+          <Files>
+            <File>
+              <FileName>CPU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\CPU.c</FilePath>
+            </File>
+            <File>
+              <FileName>CPU.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\CPU.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\I2C.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_ILI9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\LCD_ILI9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_ILI9341.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\LCD_ILI9341.h</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\SPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>Touch_FT6236.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\Touch_FT6236.c</FilePath>
+            </File>
+            <File>
+              <FileName>Touch_FT6236.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\Touch_FT6236.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SPL</GroupName>
+          <Files>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\misc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_i2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_i2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_rcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_rcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_syscfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_syscfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_syscfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_syscfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_tim.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
