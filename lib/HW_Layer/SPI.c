@@ -3,66 +3,49 @@
 
 
 // деинициализация контроллера SSP
-void SPI2_Reset(void)
+void SPI3_reset(void)
 {	
-  MDR_SSP2->CR0   = 0;
-  MDR_SSP2->CR1   = 0;
-  MDR_SSP2->CPSR  = 0;
-  MDR_SSP2->IMSC  = 0;
-  MDR_SSP2->DMACR = 0;
-}
-
-
-// конфигурация порта для работы интерфейса SPI (SSP2)
-void SPI2_PortCfg(void)
-{
-	// PORTD
-  // конфигурация линий PD2 (RXD), PD3 (FSS), PD5 (CLK), PD6 (TXD)
-  MDR_PORTD->OE     &= ~(1 << 2);                                       				// PD2 (RXD) - вход
-  MDR_PORTD->OE     |=  ((1 << 3)  | (1 << 5)  | (1 << 6));               			// PD3 (FSS), PD5 (CLK), PD6 (TXD) - выход
-  MDR_PORTD->ANALOG |=  ((1 << 2)  | (1 << 3)  | (1 << 5)  | (1 << 6));   			// режим работы - цифровой
-  MDR_PORTD->FUNC   &= ~((3 << 2*2)  | (3 << 3*2)  | (3 << 5*2)  | (3 << 6*2)); // сброс регистра FUNC
-  MDR_PORTD->FUNC   |=  ((2 << 2*2)  | (0 << 3*2)  | (2 << 5*2)  | (2 << 6*2)); // уст регистра FUNC - PD2, PD5, PD6 альтернативная функция; PD3 ввод/вывод
-  MDR_PORTD->PWR    |=  ((3 << 2*2)  | (3 << 3*2)  | (3 << 5*2)  | (3 << 6*2)); // максимально быстрый фронт
+	SPI_I2S_DeInit(SPI3);
 }
 
 
 // инициализация нитерфейса SPI2
-void SPI2_Init(void)
-{
-  // конфигурация порта
-  SPI2_PortCfg();
+void SPI3_init(void)
+{	
+	SPI3_reset();
 	
-	// разрешение тактовой частоты SSP2
-	MDR_RST_CLK->SSP_CLOCK |= ((0 << 8)			// делитель 1: SSP2_CLK = HCLK = 80 MHz
-														|(1 << 25));	// вкл тактовой частоты на SSP2
+	SPI_InitTypeDef SPI3_initStructure;
+	SPI_StructInit(&SPI3_initStructure);
 	
-	// деинициализация контроллера SSP2
-	SPI2_Reset();
+	//
+  SPI_NSSInternalSoftwareConfig(SPI3, SPI_NSSInternalSoft_Set);
 	
-	// конфигурация контроллера SSP
-	MDR_SSP2->CR0 = ((7 << 0)			// DSS: размер слова - 8 бит
-									|(0 << 4)			// FRF: протокол SPI Motorola
-									|(0 << 6)			// SPO: 
-									|(0 << 7)			// SPH: 
-									|(0 << 8));		// SCR: SCR = 0, V = 80 MHz / (2 * (1 + 0)) = 40 MHz
+  //
+  SPI3_initStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex; 		//
+	SPI3_initStructure.SPI_CPOL = SPI_CPOL_Low; 														//
 	
-	MDR_SSP2->CR1 = ((0 << 0)			// LBM: нормальный режим работы
-									|(1 << 1)			// SSE: работа разрешена
-									|(0 << 2));		// MS: ведущий модуль
+  SPI3_initStructure.SPI_DataSize = SPI_DataSize_8b; 											//
+  
+  SPI3_initStructure.SPI_CPHA = SPI_CPHA_1Edge; 											  	//
+	//
+  SPI3_initStructure.SPI_NSS = SPI_NSS_Soft; 															//
+  SPI3_initStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;			// SPIf = APB1 / 2 = 13.125 MHz
 	
-	// задание делителя тактовой частоты
-	MDR_SSP2->CPSR = (2 << 0);		// CPSDVSR: коэф. = 2; V = 80 MHz / (2 * (1 + 0)) = 40 MHz
+  SPI3_initStructure.SPI_FirstBit = SPI_FirstBit_MSB; 										//
+  SPI3_initStructure.SPI_Mode = SPI_Mode_Master; 													//
+  SPI_Init(SPI3, &SPI3_initStructure); 																		//
+
+  SPI_Cmd(SPI3, ENABLE); 																									//
 }
 
-	
+
 // передача данных по интерфейсу SPI
-void SPI2_sendData(uint16_t data)
+void SPI3_sendData(uint16_t data)
 {	
 	// передача данных
-	MDR_SSP2->DR = data;
+	SPI_I2S_SendData(SPI3, data);
 	
 	// ожидание завершения передачи
-	while((MDR_SSP2->SR & (1 << 4)) != 0)	{;}		// флаг освобождения модуля SSP2
-	while((MDR_SSP2->SR & (1 << 0)) == 0)	{;}		// флаг освобождения буфера передатчика
+	while(!(SPI3->SR & SPI_I2S_FLAG_RXNE));		// wait SPI3 busy
+	while(SPI3->SR & (SPI_I2S_FLAG_BSY));
 }	

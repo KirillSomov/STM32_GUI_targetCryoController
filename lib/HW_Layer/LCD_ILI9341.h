@@ -9,16 +9,16 @@
 
 	// управление линией
 	// посылка команды/данных
-	#define LCD_DC_RESET  MDR_PORTA->RXTX &= ~(1 << 6)
-	#define LCD_DC_SET    MDR_PORTA->RXTX |=	(1 << 6)
+	#define LCD_DC_RESET  	GPIO_ResetBits(GPIOC, GPIO_Pin_9)
+	#define LCD_DC_SET    	GPIO_SetBits(GPIOC, GPIO_Pin_9)
 
 	// вкл/выкл LCD
-	#define LCD_RST_RESET	MDR_PORTE->RXTX &= ~(1 << 7)
-	#define LCD_RST_SET		MDR_PORTE->RXTX |=	(1 << 7)
+	#define LCD_RST_RESET		GPIO_ResetBits(GPIOD, GPIO_Pin_3)
+	#define LCD_RST_SET			GPIO_SetBits(GPIOD, GPIO_Pin_3)
 
 	// вкл/выкл подсветки LCD
-	#define	LCD_LED_OFF		MDR_PORTA->RXTX &= ~(1 << 7)
-	#define	LCD_LED_ON		MDR_PORTA->RXTX |=	(1 << 7)
+	//#define	LCD_LED_OFF			MDR_PORTA->RXTX &= ~(1 << 7)
+	//#define	LCD_LED_ON			MDR_PORTA->RXTX |=	(1 << 7)
 
 
 	// параметры LCD
@@ -61,7 +61,6 @@
 
 
 	// прототипы функций
-	void			LCD_portCfg(void);																												// настройка портов для LCD
 	void 			LCD_sendCommand(uint16_t com);																						// посылка команды
 	void 			LCD_sendData(uint16_t data);																							// посылка данных
 	void 			LCD_init(void);																														// инициализация LCD

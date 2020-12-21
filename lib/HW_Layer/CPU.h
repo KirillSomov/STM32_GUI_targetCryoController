@@ -5,13 +5,19 @@
 
 	// подключение заголовочных файлов модулей проекта
 	#include "link.h"
+	
+	// 
+	#define cPLLM 	4				// main PLL (PLLM) = 8 MHz / 4 = 2 MHz
+	#define cPLLN 	210			// VCO output = PLLM * 210 = 420 MHz
+	#define cPLLP 	1				// PLLP = VCO output / 4 = 105 MHz
+	#define cPLLQ 	8
+	
 
 
 	// прототипы функций
-	void Clock_Set(void);			// тактирование
-	void PLL_init(void);			// инициализация умножителя
-	void CPU_set(void);				// настройка для 80 MHz
-	void CPU_init(void);			// инициализация CPU
+	void	clockSetup(void);					// тактирование
+	void	periphClockSetup(void);		// 
+	void	CPU_init(void);						// инициализация CPU
 
 
 #endif

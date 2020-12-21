@@ -2,68 +2,49 @@
 #include "CPU.h"
 
 
-/*======================================== CLOCKING ========================================*/
-void Clock_Set(void)
+void	clockSetup(void)
 {
-	// тактирование
-//	MDR_RST_CLK->PER_CLOCK |= ((1 << 7) 		// UART2
-//														|(1 << 17)		// ADC
-//														|(1 << 20)		// SSP2
-//														|(1 << 21)		// PORTA
-//														|(1 << 24)		// PORTD
-//														|(1 << 25)		// PORTE
-//														|(1 << 27));	// BKP
+	RCC->APB1ENR |= RCC_APB1ENR_PWREN;
 	
-	MDR_RST_CLK->PER_CLOCK = 0xffffffff;  //
+	PWR->CR |= PWR_CR_PLS | PWR_CR_PVDE | ((uint32_t)0x00004000);
+	while(!(PWR->CSR & PWR_CSR_VOSRDY))	{;}
+	
+	RCC->CR |=RCC_CR_HSEON; // Enable external quartz
+  while(!(RCC->CR & RCC_CR_HSERDY))	{;} //wait for quartz ready 
+	
+	FLASH->ACR = FLASH_ACR_PRFTEN | FLASH_ACR_ICEN | FLASH_ACR_DCEN | FLASH_ACR_LATENCY_5WS;
+	
+	RCC->PLLCFGR=(cPLLQ<<24) | (cPLLP<<16) | (cPLLN<<6) | cPLLM | RCC_PLLCFGR_PLLSRC_HSE;
+	
+	RCC->CR |=	RCC_CR_PLLON;
+	while(!(RCC->CR & RCC_CR_PLLRDY))	{;} //wait for PLL ready 
+    
+  RCC->CFGR |= RCC_CFGR_HPRE_DIV1; 		// AHB = PLLCLK / 1 = 105 MHz
+  RCC->CFGR |= RCC_CFGR_PPRE2_DIV2;   // APB2 = AHB / 2 = 52.5 MHz
+  RCC->CFGR |= RCC_CFGR_PPRE1_DIV4; 	// APB1 = AHB / 4 = 26.25 MHz
+	
+	RCC->CFGR = (RCC->CFGR & ~RCC_CFGR_SW) | RCC_CFGR_SW_PLL;
+  while((RCC->CFGR & RCC_CFGR_SWS ) != RCC_CFGR_SWS_PLL)	{;}
+
+	RCC->CR &= ~RCC_CR_HSION; // page 224, HSI clock 16 MHz Off 
 }
-/*======================================== CLOCKING ========================================*/
 
 
-/*======================================== PLL ========================================*/
-void PLL_init(void)
+void	periphClockSetup(void)
 {	
-	while(!(MDR_BKP->REG_0F & (1 << 23))) {;} // ожидание установки флага генератора HSI_RDY в рабочий режим
-		
-	MDR_RST_CLK->CPU_CLOCK |= (0 << 0); // CPU_C1_SEL: выбор источника HSI
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA,	ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB,	ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC,	ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,	ENABLE);
 	
-	MDR_RST_CLK->HS_CONTROL |= (1 << 0); // HSE_ON: включение внешнего осциллятора
-			
-	while(!(MDR_RST_CLK->CLOCK_STATUS & (1 << 2))) {;} // ожидание установки флага осциллятора HSE в рабочий режим
-		
-	MDR_RST_CLK->CPU_CLOCK |= (2 << 0); // CPU_C1_SEL: выбор источника HSE
-		
-	MDR_RST_CLK->PLL_CONTROL |= ((7 << 8)		// коэффициент умножения PLL_CPU_MUL - 10 * (7 + 1) = 80 MHz
-															|(1 << 2));	// включение умножителя - PLL_CPU_ON
-	 
-	while(!(MDR_RST_CLK->CLOCK_STATUS & (1 << 1))) {;} // ожидание установки флага PLL_CPU_RDY - выхода в рабочий режим CPU_PLL
-		
-	MDR_RST_CLK->CPU_CLOCK |= ((1 << 2) 	// CPU_C2_SEL: выбор источника PLLCPUo - умножитель = 80 MHz
-														|(0 << 4) 	// CPU_C3_SEL: CPU_C3 = CPU_C2 = 80 MHz
-														|(1 << 8)); // HCLK_SEL: CPU_CLOCK - CPU_C3 = 80 MHz
-		
-	SystemCoreClockUpdate();
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6,		ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3,		ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1,		ENABLE);
 }
-/*======================================== PLL ========================================*/
 
 
-/*======================================== CPU_set ========================================*/
-// использовать при 80 MHz
-void CPU_set(void)
+void	CPU_init(void)
 {
-	// необходимая пауза для работы Flash-памяти программ
-	MDR_EEPROM->CMD |= (3 << 3);
-	
-	MDR_BKP->REG_0E |= (6 << 0); // режим встроенного регулятора напряжения DUcc(в зависимости от частоты МК)
-	MDR_BKP->REG_0E |= (6 << 3); // выбор доп.стабилизирующей нагрузки
+	clockSetup();
+	periphClockSetup();
 }
-/*======================================== CPU_set ========================================*/
-
-
-/*======================================== CLOCK_INIT ========================================*/
-void CPU_init(void)
-{
-	Clock_Set();
-	PLL_init();
-	CPU_set();
-}
-/*======================================== CLOCK_INIT ========================================*/

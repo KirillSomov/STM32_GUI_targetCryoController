@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\lib\App_Layer;.\lib\Func_Layer;.\lib\HW_Layer;.\lib\SPL</IncludePath>
+              <IncludePath>.\lib\App_Layer;.\lib\Func_Layer;.\lib\HW_Layer;.\lib\SPL;.\lib\CMSIS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -360,7 +360,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>0</umfTarg>
+            <umfTarg>1</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -438,16 +438,6 @@
               <FilePath>.\lib\HW_Layer\CPU.h</FilePath>
             </File>
             <File>
-              <FileName>I2C.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lib\HW_Layer\I2C.c</FilePath>
-            </File>
-            <File>
-              <FileName>I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lib\HW_Layer\I2C.h</FilePath>
-            </File>
-            <File>
               <FileName>LCD_ILI9341.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\lib\HW_Layer\LCD_ILI9341.c</FilePath>
@@ -478,14 +468,14 @@
               <FilePath>.\lib\HW_Layer\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>Touch_FT6236.c</FileName>
+              <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\lib\HW_Layer\Touch_FT6236.c</FilePath>
+              <FilePath>.\lib\HW_Layer\GPIO.c</FilePath>
             </File>
             <File>
-              <FileName>Touch_FT6236.h</FileName>
+              <FileName>GPIO.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\lib\HW_Layer\Touch_FT6236.h</FilePath>
+              <FilePath>.\lib\HW_Layer\GPIO.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -561,6 +551,36 @@
               <FileName>stm32f4xx_tim.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\lib\SPL\stm32f4xx_tim.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>core_cm4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\CMSIS\core_cm4.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_cmFunc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\CMSIS\core_cmFunc.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_cmInstr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\CMSIS\core_cmInstr.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_cmSimd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\CMSIS\core_cmSimd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\CMSIS\stm32f4xx_conf.h</FilePath>
             </File>
           </Files>
         </Group>

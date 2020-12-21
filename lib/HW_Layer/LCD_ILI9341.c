@@ -2,49 +2,30 @@
 #include "LCD_ILI9341.h"
 
 
-void LCD_portCfg(void)
-{
-	// PORTA
-	MDR_PORTA->OE     |= ((1 << 6) | (1 << 7));   		// PA6 (DC), PA7 (LED) - выход
-	MDR_PORTA->ANALOG |= ((1 << 6) | (1 << 7));   		// режим работы - цифровой
-  MDR_PORTA->FUNC   &= ~((3 << 6*2) | (3 << 7*2));  // сброс регистра FUNC - порт IO
-  MDR_PORTA->PWR    |= ((3 << 6*2) | (3 << 7*2));  	// максимально быстрый фронт
-	
-	// PORTE
-	MDR_PORTE->OE     |= (1 << 7);   		// PE7 (RES) - выход
-  MDR_PORTE->ANALOG |= (1 << 7);   		// режим работы - цифровой
-  MDR_PORTE->FUNC   &= ~(3 << 7*2);		// сброс регистра FUNC - порт IO
-  MDR_PORTE->PWR    |=  (3 << 7*2); 	// максимально быстрый фронт
-}
-
-
 // посылка команды
 void LCD_sendCommand(uint16_t com)
 {
   LCD_DC_RESET;
-	SPI2_FSS_RESET;
-  SPI2_sendData(com);
-	SPI2_FSS_SET;
+	SPI3_CS_RESET;
+  SPI3_sendData(com);
+	SPI3_CS_SET;
 }
 
 // посылка данных
 void LCD_sendData(uint16_t data)
 {
   LCD_DC_SET;
-	SPI2_FSS_RESET;
-  SPI2_sendData(data);
-	SPI2_FSS_SET;
+	SPI3_CS_RESET;
+  SPI3_sendData(data);
+	SPI3_CS_SET;
 }
 
 
 // инициализация LCD
 void LCD_init(void)
-{
-	// настройка портов для LCD
-  LCD_portCfg(); 
-	
+{	
 	// установка линии SPI
-	SPI2_FSS_SET;
+	SPI3_CS_SET;
    
   // сброс дисплея
   LCD_RST_SET;
@@ -149,7 +130,7 @@ void LCD_init(void)
   LCD_sendCommand(ILI9341_GRAM);
 	
 	// вкл подсветка
-	LCD_LED_ON;
+	//LCD_LED_ON;
 }
 
 

@@ -9,25 +9,33 @@ int main(void)
 	CPU_init();
 	
 	// инициализация Таймера 2
-	Timer3_Init();
+	//Timer3_Init();
 	
-	// инициализация SPI2
-	SPI2_Init();
+	GPIO_setup();
+		
+	TIM6_DAC_Init();
+	
+	GPIO_SetBits(GPIOD, GPIO_Pin_0);
+	delay_ms(1000);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_0);
+	
+	// инициализация SPI3
+	SPI3_init();
 	
 	// инициализация модуля I2C
-	I2C_init();
+	//I2C_init();
 	
 	// инициализация LCD
 	LCD_init();
 	
 	// инициализация touch панели
-	FT6236_init();
+	//FT6236_init();
 	
 	// белый фон LCD
 	LCD_fill(0xBDD7);
 	
 	//
-	Timer1_init();
+	//Timer1_init();
 	
 	GUI_CTC_init();
 	
@@ -78,7 +86,7 @@ int main(void)
 		delay_ms(250);
 		
 		
-		GUI_Handler();
+		//GUI_Handler();
 		
 		delay_ms(10);
 	}	
