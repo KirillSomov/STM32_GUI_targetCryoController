@@ -477,6 +477,26 @@
               <FileType>5</FileType>
               <FilePath>.\lib\HW_Layer\GPIO.h</FilePath>
             </File>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\I2C.h</FilePath>
+            </File>
+            <File>
+              <FileName>Touch_FT6236.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\Touch_FT6236.c</FilePath>
+            </File>
+            <File>
+              <FileName>Touch_FT6236.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\Touch_FT6236.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

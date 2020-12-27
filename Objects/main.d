@@ -40,7 +40,9 @@
 .\objects\main.o: .\lib\HW_Layer\GPIO.h
 .\objects\main.o: .\lib\HW_Layer\Timer.h
 .\objects\main.o: .\lib\HW_Layer\SPI.h
+.\objects\main.o: .\lib\HW_Layer\I2C.h
 .\objects\main.o: .\lib\Func_Layer\Font.h
 .\objects\main.o: .\lib\HW_Layer\LCD_ILI9341.h
+.\objects\main.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\main.o: .\lib\Func_Layer\GUI.h
 .\objects\main.o: .\lib\App_Layer\GUI_cryoTargetController.h

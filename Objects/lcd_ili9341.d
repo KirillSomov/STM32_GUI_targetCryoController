@@ -41,7 +41,9 @@
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\GPIO.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\Timer.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\SPI.h
+.\objects\lcd_ili9341.o: .\lib\HW_Layer\I2C.h
 .\objects\lcd_ili9341.o: .\lib\Func_Layer\Font.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\LCD_ILI9341.h
+.\objects\lcd_ili9341.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\lcd_ili9341.o: .\lib\Func_Layer\GUI.h
 .\objects\lcd_ili9341.o: .\lib\App_Layer\GUI_cryoTargetController.h

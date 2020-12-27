@@ -41,7 +41,9 @@
 .\objects\cpu.o: .\lib\Func_Layer\link.h
 .\objects\cpu.o: .\lib\HW_Layer\Timer.h
 .\objects\cpu.o: .\lib\HW_Layer\SPI.h
+.\objects\cpu.o: .\lib\HW_Layer\I2C.h
 .\objects\cpu.o: .\lib\Func_Layer\Font.h
 .\objects\cpu.o: .\lib\HW_Layer\LCD_ILI9341.h
+.\objects\cpu.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\cpu.o: .\lib\Func_Layer\GUI.h
 .\objects\cpu.o: .\lib\App_Layer\GUI_cryoTargetController.h

@@ -41,7 +41,9 @@
 .\objects\gui_cryotargetcontroller.o: .\lib\HW_Layer\GPIO.h
 .\objects\gui_cryotargetcontroller.o: .\lib\HW_Layer\Timer.h
 .\objects\gui_cryotargetcontroller.o: .\lib\HW_Layer\SPI.h
+.\objects\gui_cryotargetcontroller.o: .\lib\HW_Layer\I2C.h
 .\objects\gui_cryotargetcontroller.o: .\lib\Func_Layer\Font.h
 .\objects\gui_cryotargetcontroller.o: .\lib\HW_Layer\LCD_ILI9341.h
+.\objects\gui_cryotargetcontroller.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\gui_cryotargetcontroller.o: .\lib\Func_Layer\GUI.h
 .\objects\gui_cryotargetcontroller.o: .\lib\App_Layer\GUI_cryoTargetController.h

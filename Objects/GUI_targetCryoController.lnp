@@ -7,6 +7,8 @@
 ".\objects\spi.o"
 ".\objects\timer.o"
 ".\objects\gpio.o"
+".\objects\i2c.o"
+".\objects\touch_ft6236.o"
 ".\objects\misc.o"
 ".\objects\stm32f4xx_gpio.o"
 ".\objects\stm32f4xx_i2c.o"

@@ -5,26 +5,36 @@
 // конфигурация портов на вход
 void	GPIO_gpiSetup(void)
 {
-	;
+	//
+	GPIO_InitTypeDef GPIO_initGpi;
+	GPIO_StructInit(&GPIO_initGpi);
+	
+  GPIO_initGpi.GPIO_Mode  = GPIO_Mode_IN;
+  GPIO_initGpi.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_initGpi.GPIO_OType = GPIO_OType_OD;
+  GPIO_initGpi.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+	
+  GPIO_initGpi.GPIO_Pin   = GPIO_Pin_5;					// PD5 - LCD_IRQ
+	GPIO_Init(GPIOD,&GPIO_initGpi); 							// PD5 - LCD_IRQ
 }	
 
 // конфигурация портов на выход
 void	GPIO_gpoSetup(void)
 {
 	//
-	GPIO_InitTypeDef GPIO_initStruct;
-	GPIO_StructInit(&GPIO_initStruct);
+	GPIO_InitTypeDef GPIO_initGpo;
+	GPIO_StructInit(&GPIO_initGpo);
 	
-  GPIO_initStruct.GPIO_Mode  = GPIO_Mode_OUT;
-  GPIO_initStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_initStruct.GPIO_OType = GPIO_OType_PP;
-  GPIO_initStruct.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+  GPIO_initGpo.GPIO_Mode  = GPIO_Mode_OUT;
+  GPIO_initGpo.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_initGpo.GPIO_OType = GPIO_OType_PP;
+  GPIO_initGpo.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 	
-  GPIO_initStruct.GPIO_Pin   = GPIO_Pin_9;								// PC9 - LCD_DC
-	GPIO_Init(GPIOC,&GPIO_initStruct); 											// PC9 - LCD_DC
+  GPIO_initGpo.GPIO_Pin   = GPIO_Pin_9;															// PC9 - LCD_DC
+	GPIO_Init(GPIOC,&GPIO_initGpo); 																	// PC9 - LCD_DC
 	
-	GPIO_initStruct.GPIO_Pin   = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_0;		// PD3 - LCD_RST, PD4 - TOUCH_FT6236_RSTN
-	GPIO_Init(GPIOD,&GPIO_initStruct);                      // PD3 - LCD_RST, PD4 - TOUCH_FT6236_RSTN
+	GPIO_initGpo.GPIO_Pin   = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_0;		// PD3 - LCD_RST, PD4 - TOUCH_FT6236_RSTN
+	GPIO_Init(GPIOD,&GPIO_initGpo);																		// PD3 - LCD_RST, PD4 - TOUCH_FT6236_RSTN
 }
 
 // конфигурация порта для работы интерфейса SPI (SSP3)
@@ -55,7 +65,18 @@ void	GPIO_spi3Setup(void)
 // конфигурация порта для работы интерфейса I2C (I2C1)
 void	GPIO_i2c1Setup(void)
 {
-	;
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_I2C1);
+	
+	GPIO_InitTypeDef GPIO_initI2C1;
+	GPIO_StructInit(&GPIO_initI2C1);
+	
+  GPIO_initI2C1.GPIO_Pin		=	GPIO_Pin_6 | GPIO_Pin_7;
+  GPIO_initI2C1.GPIO_Mode		=	GPIO_Mode_AF; 
+  GPIO_initI2C1.GPIO_Speed	=	GPIO_Speed_50MHz;
+  GPIO_initI2C1.GPIO_OType	=	GPIO_OType_OD;
+  GPIO_initI2C1.GPIO_PuPd		= GPIO_PuPd_UP;
+  GPIO_Init(GPIOB, &GPIO_initI2C1);
 }
 
 

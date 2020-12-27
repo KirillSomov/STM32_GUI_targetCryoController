@@ -20,10 +20,10 @@
 	#include "GPIO.h"
 	#include "Timer.h"
 	#include "SPI.h"
-	//#include "I2C.h"
+	#include "I2C.h"
 	#include "Font.h"
 	#include "LCD_ILI9341.h"
-	//#include "Touch_FT6236.h"
+	#include "Touch_FT6236.h"
 	#include "GUI.h"
 	#include "GUI_cryoTargetController.h"
 

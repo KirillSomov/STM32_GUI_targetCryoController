@@ -41,7 +41,9 @@
 .\objects\timer.o: .\lib\HW_Layer\GPIO.h
 .\objects\timer.o: .\lib\HW_Layer\Timer.h
 .\objects\timer.o: .\lib\HW_Layer\SPI.h
+.\objects\timer.o: .\lib\HW_Layer\I2C.h
 .\objects\timer.o: .\lib\Func_Layer\Font.h
 .\objects\timer.o: .\lib\HW_Layer\LCD_ILI9341.h
+.\objects\timer.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\timer.o: .\lib\Func_Layer\GUI.h
 .\objects\timer.o: .\lib\App_Layer\GUI_cryoTargetController.h

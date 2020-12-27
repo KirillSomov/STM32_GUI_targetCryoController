@@ -146,7 +146,6 @@ void	GUI_objectListReset(void)
 // получить координаты нажатия
 void	GUI_getTouchPoint(void)
 {
-	/*
 	GUI.flag_touch = FT6236_checkInt();
 	
 	if(GUI.flag_touch)
@@ -156,7 +155,6 @@ void	GUI_getTouchPoint(void)
 		GUI.touchPoint.X = FT6236_Tpoint.Xt;
 		GUI.touchPoint.Y = FT6236_Tpoint.Yt;
 	}
-	*/
 }
 
 // установить действия для объектов
@@ -174,7 +172,7 @@ void	GUI_objHandler(void)
 // обработчик нажатия на дисплей
 void	GUI_Handler(void)
 {	
-	//GUI_getTouchPoint();
+	GUI_getTouchPoint();
 	
 	GUI_objHandler();
 	

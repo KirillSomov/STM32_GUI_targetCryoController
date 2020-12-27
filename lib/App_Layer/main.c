@@ -3,17 +3,18 @@
 #include "link.h"
 
 
+uint8_t dataI2C = 0;
+
 int main(void)
 {	
 	// тактирование
 	CPU_init();
 	
-	// инициализация Таймера 2
-	//Timer3_Init();
-	
 	GPIO_setup();
-		
-	TIM6_DAC_Init();
+	
+	// инициализация Таймера
+	TIM6_DAC_init();
+	TIM7_init();
 	
 	GPIO_SetBits(GPIOD, GPIO_Pin_0);
 	delay_ms(1000);
@@ -23,22 +24,18 @@ int main(void)
 	SPI3_init();
 	
 	// инициализация модуля I2C
-	//I2C_init();
+	I2C1_init();
 	
 	// инициализация LCD
 	LCD_init();
 	
 	// инициализация touch панели
-	//FT6236_init();
+	FT6236_init();
 	
 	// белый фон LCD
 	LCD_fill(0xBDD7);
 	
-	//
-	//Timer1_init();
-	
 	GUI_CTC_init();
-	
 
 //	
 //	GUI_intToStr(0, &strBufNum[0]);
@@ -56,6 +53,7 @@ int main(void)
 		
 	while(1)
 	{
+		/*
 		GUI_floatToStr(25.3f, &strBufNum[0]);
 		for(uint8_t i = 0; i < 8; i++)
 			GUI_labelChangeText(i+12, &strBufNum[0], 0x0000);
@@ -84,9 +82,9 @@ int main(void)
 		for(uint8_t i = 0; i < 8; i++)
 			GUI_labelChangeText(i+12, &strBufNum[0], 0x0000);
 		delay_ms(250);
+		*/
 		
-		
-		//GUI_Handler();
+		GUI_Handler();
 		
 		delay_ms(10);
 	}	
