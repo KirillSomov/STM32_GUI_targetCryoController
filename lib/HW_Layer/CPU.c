@@ -37,6 +37,8 @@ void	periphClockSetup(void)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC,	ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,	ENABLE);
 	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_EXTIT,	ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6,		ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM7,		ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3,		ENABLE);

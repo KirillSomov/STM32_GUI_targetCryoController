@@ -39,6 +39,7 @@
 .\objects\timer.o: .\lib\HW_Layer\CPU.h
 .\objects\timer.o: .\lib\Func_Layer\link.h
 .\objects\timer.o: .\lib\HW_Layer\GPIO.h
+.\objects\timer.o: .\lib\HW_Layer\EXTI.h
 .\objects\timer.o: .\lib\HW_Layer\Timer.h
 .\objects\timer.o: .\lib\HW_Layer\SPI.h
 .\objects\timer.o: .\lib\HW_Layer\I2C.h

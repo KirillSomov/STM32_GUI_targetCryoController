@@ -39,6 +39,7 @@
 .\objects\i2c.o: .\lib\HW_Layer\CPU.h
 .\objects\i2c.o: .\lib\Func_Layer\link.h
 .\objects\i2c.o: .\lib\HW_Layer\GPIO.h
+.\objects\i2c.o: .\lib\HW_Layer\EXTI.h
 .\objects\i2c.o: .\lib\HW_Layer\Timer.h
 .\objects\i2c.o: .\lib\HW_Layer\SPI.h
 .\objects\i2c.o: .\lib\HW_Layer\I2C.h

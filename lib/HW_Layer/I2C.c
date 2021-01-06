@@ -11,7 +11,7 @@ void I2C1_init(void)
 	I2C_StructInit(&I2C1_InitStruct);
 		
 	// настройка I2C
-  I2C1_InitStruct.I2C_ClockSpeed = 100000; 
+  I2C1_InitStruct.I2C_ClockSpeed = 400000; 
   I2C1_InitStruct.I2C_Mode = I2C_Mode_I2C;
   I2C1_InitStruct.I2C_DutyCycle = I2C_DutyCycle_2;
   I2C1_InitStruct.I2C_OwnAddress1 = 0x15;

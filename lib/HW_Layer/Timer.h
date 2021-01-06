@@ -11,7 +11,6 @@
 	void TIM6_DAC_IRQHandler(void);
 	
 	void delay_ms(uint32_t Delay_ms_Data);	// функия задержки в мс
-	void delay_us(uint32_t Delay_us_Data);	// функия задержки в мкс
 	
 	void TIM7_init(void);
 	void TIM7_IRQHandler(void);

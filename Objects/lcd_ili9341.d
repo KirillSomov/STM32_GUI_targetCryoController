@@ -39,6 +39,7 @@
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\CPU.h
 .\objects\lcd_ili9341.o: .\lib\Func_Layer\link.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\GPIO.h
+.\objects\lcd_ili9341.o: .\lib\HW_Layer\EXTI.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\Timer.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\SPI.h
 .\objects\lcd_ili9341.o: .\lib\HW_Layer\I2C.h

@@ -497,6 +497,16 @@
               <FileType>5</FileType>
               <FilePath>.\lib\HW_Layer\Touch_FT6236.h</FilePath>
             </File>
+            <File>
+              <FileName>EXTI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\HW_Layer\EXTI.c</FilePath>
+            </File>
+            <File>
+              <FileName>EXTI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\HW_Layer\EXTI.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -571,6 +581,16 @@
               <FileName>stm32f4xx_tim.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\lib\SPL\stm32f4xx_tim.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_exti.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\SPL\stm32f4xx_exti.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -39,6 +39,7 @@
 .\objects\touch_ft6236.o: .\lib\HW_Layer\CPU.h
 .\objects\touch_ft6236.o: .\lib\Func_Layer\link.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\GPIO.h
+.\objects\touch_ft6236.o: .\lib\HW_Layer\EXTI.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\Timer.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\SPI.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\I2C.h

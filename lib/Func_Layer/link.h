@@ -12,12 +12,14 @@
 	#include "stm32f4xx_rcc.h"
 	#include "stm32f4xx_spi.h"
 	#include "stm32f4xx_tim.h"
+	#include "stm32f4xx_exti.h"
 	#include "misc.h"
 	
 
 	// подключение заголовочных файлов модулей проектов
 	#include "CPU.h"
 	#include "GPIO.h"
+	#include "EXTI.h"
 	#include "Timer.h"
 	#include "SPI.h"
 	#include "I2C.h"

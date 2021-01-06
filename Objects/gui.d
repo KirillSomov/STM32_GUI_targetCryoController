@@ -39,6 +39,7 @@
 .\objects\gui.o: .\lib\HW_Layer\CPU.h
 .\objects\gui.o: .\lib\Func_Layer\link.h
 .\objects\gui.o: .\lib\HW_Layer\GPIO.h
+.\objects\gui.o: .\lib\HW_Layer\EXTI.h
 .\objects\gui.o: .\lib\HW_Layer\Timer.h
 .\objects\gui.o: .\lib\HW_Layer\SPI.h
 .\objects\gui.o: .\lib\HW_Layer\I2C.h

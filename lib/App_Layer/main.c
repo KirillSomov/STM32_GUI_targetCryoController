@@ -10,16 +10,16 @@ int main(void)
 	// тактирование
 	CPU_init();
 	
+	// GPIO
 	GPIO_setup();
+	
+	// External interrupt init
+	EXTI_init();
 	
 	// инициализация Таймера
 	TIM6_DAC_init();
 	TIM7_init();
-	
-	GPIO_SetBits(GPIOD, GPIO_Pin_0);
-	delay_ms(1000);
-	GPIO_ResetBits(GPIOD, GPIO_Pin_0);
-	
+		
 	// инициализация SPI3
 	SPI3_init();
 	
@@ -35,6 +35,7 @@ int main(void)
 	// белый фон LCD
 	LCD_fill(0xBDD7);
 	
+	// init Graphical User Interface for CryoTargetController
 	GUI_CTC_init();
 
 //	
@@ -84,6 +85,7 @@ int main(void)
 		delay_ms(250);
 		*/
 		
+		//
 		GUI_Handler();
 		
 		delay_ms(10);

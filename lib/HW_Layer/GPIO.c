@@ -11,11 +11,11 @@ void	GPIO_gpiSetup(void)
 	
   GPIO_initGpi.GPIO_Mode  = GPIO_Mode_IN;
   GPIO_initGpi.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_initGpi.GPIO_OType = GPIO_OType_OD;
+  GPIO_initGpi.GPIO_OType = GPIO_OType_PP;
   GPIO_initGpi.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 	
   GPIO_initGpi.GPIO_Pin   = GPIO_Pin_5;					// PD5 - LCD_IRQ
-	GPIO_Init(GPIOD,&GPIO_initGpi); 							// PD5 - LCD_IRQ
+	GPIO_Init(GPIOD, &GPIO_initGpi); 							// PD5 - LCD_IRQ
 }	
 
 // конфигурация портов на выход
