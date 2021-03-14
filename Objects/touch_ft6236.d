@@ -44,6 +44,7 @@
 .\objects\touch_ft6236.o: .\lib\HW_Layer\SPI.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\I2C.h
 .\objects\touch_ft6236.o: .\lib\Func_Layer\Font.h
+.\objects\touch_ft6236.o: .\lib\Func_Layer\Picture.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\LCD_ILI9341.h
 .\objects\touch_ft6236.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\touch_ft6236.o: .\lib\Func_Layer\GUI.h

@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.36.2.0
  
 <h2>Project:</h2>
 C:\Users\Kirill\Documents\Projects\Keil\STM32\STM32_GUI_targetCryoController\GUI_targetCryoController.uvprojx
-Project File Date:  01/04/2021
+Project File Date:  03/15/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -30,6 +30,16 @@ Rebuild target 'Target 1'
 compiling GUI_cryoTargetController.c...
 compiling main.c...
 compiling GUI.c...
+compiling Font.c...
+.\lib\HW_Layer\LCD_ILI9341.h(87): warning:  #231-D: declaration is not visible outside of function
+                                                                                                        const struct fontInfo *fontInfoStruct);
+.\lib\HW_Layer\LCD_ILI9341.h(90): warning:  #231-D: declaration is not visible outside of function
+                                                                                                                const struct fontInfo *fontInfoStruct);
+lib\Func_Layer\Font.c: 2 warnings, 0 errors
+compiling Picture.c...
+.\lib\HW_Layer\LCD_ILI9341.h(82): warning:  #231-D: declaration is not visible outside of function
+                                                                                                                const   struct pictureInfo *pictureInfoStruct);                                                 // отрисовка картинки
+lib\Func_Layer\Picture.c: 1 warning, 0 errors
 compiling CPU.c...
 compiling LCD_ILI9341.c...
 compiling SPI.c...
@@ -49,9 +59,9 @@ compiling stm32f4xx_exti.c...
 assembling startup_stm32f407xx.s...
 compiling system_stm32f4xx.c...
 linking...
-Program Size: Code=9916 RO-data=3848 RW-data=36 ZI-data=2596  
+Program Size: Code=10964 RO-data=6920 RW-data=36 ZI-data=2700  
 FromELF: creating hex file...
-".\Objects\GUI_targetCryoController.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\GUI_targetCryoController.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -78,11 +88,11 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:2.6.3
       Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:35
+Build Time Elapsed:  00:00:21
 </pre>
 </body>
 </html>

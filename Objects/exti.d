@@ -44,6 +44,7 @@
 .\objects\exti.o: .\lib\HW_Layer\SPI.h
 .\objects\exti.o: .\lib\HW_Layer\I2C.h
 .\objects\exti.o: .\lib\Func_Layer\Font.h
+.\objects\exti.o: .\lib\Func_Layer\Picture.h
 .\objects\exti.o: .\lib\HW_Layer\LCD_ILI9341.h
 .\objects\exti.o: .\lib\HW_Layer\Touch_FT6236.h
 .\objects\exti.o: .\lib\Func_Layer\GUI.h

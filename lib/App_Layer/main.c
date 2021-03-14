@@ -35,8 +35,10 @@ int main(void)
 	// белый фон LCD
 	LCD_fill(0xBDD7);
 	
-	// init Graphical User Interface for CryoTargetController
-	GUI_CTC_init();
+	// init pages
+	GUI_CTC_pageLogoInit();		// init logo page
+	delay_ms(5000);
+	GUI_CTC_pageMainInit();		// init main page
 
 //	
 //	GUI_intToStr(0, &strBufNum[0]);

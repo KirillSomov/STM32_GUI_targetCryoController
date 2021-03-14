@@ -188,7 +188,6 @@ void LCD_drawPixel(uint16_t x, uint16_t y, uint16_t color)
   LCD_sendData(color & 0xFF);
 }
 
-
 // закрасить область
 void LCD_drawFilledRectangle(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1, uint16_t color)
 {
@@ -220,31 +219,80 @@ void LCD_drawFilledRectangle(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1,
 }
 
 
-uint16_t	LCD_printChar(uint32_t x, uint32_t y, uint16_t symbol, uint16_t fontColor, const uint8_t charArray[], const uint16_t charInfoArray[][3], uint16_t charOffset)
-{	
+// отрисовка картинки
+void	LCD_drawPicture(uint32_t	x,	uint32_t	y,
+											uint16_t	pictureColor,
+											const	struct pictureInfo *pictureInfoStruct)
+{
 	uint8_t	i = 0;
+	uint8_t	heightInBytes = 0;
 	
-	for(uint8_t width = 0; width < charInfoArray[symbol - charOffset][0]; width++)
+	if(pictureInfoStruct->pictureDescriptorArray[0][1] % 8 != 0)
+		heightInBytes = pictureInfoStruct->pictureDescriptorArray[0][1] / 8 + 1;
+	else
+		heightInBytes = pictureInfoStruct->pictureDescriptorArray[0][1] / 8;
+	
+	for(uint8_t width = 0; width < pictureInfoStruct->pictureDescriptorArray[0][0]; width++)
 	{
 		i = 0;
-		for(uint8_t height = charInfoArray[symbol - charOffset][1]; height > 0; height--)
+		for(uint8_t height = heightInBytes; height > 0; height--)
 		{
 			for(uint8_t byte = 0; byte < 8; byte++)
 			{
-				if(charArray[charInfoArray[symbol - charOffset][2] + width + i*charInfoArray[symbol - charOffset][0]] & (1 << byte))
-					LCD_drawPixel(x, (y + height*8 - byte), fontColor);
+				if(pictureInfoStruct->pictureBitmapArray[width + i*pictureInfoStruct->pictureDescriptorArray[0][0]] & (1 << byte))
+					LCD_drawPixel(x, (y + height*8 - byte), pictureColor);
 			}
 			i++;
 		}
 		x++;
 	}
+}
+
+
+uint16_t	LCD_printChar(uint32_t x, uint32_t y, uint16_t symbol, uint16_t fontColor, const struct fontInfo *fontInfoStruct)
+{	
+	uint8_t		i							=	0;
+	uint16_t	symbolWidth		=	0;
+	uint16_t	symbolHeight	=	0;
+	uint16_t	symbolOffset	=	0;
+	uint8_t		symbolByte		=	0;
+	
+	if(symbol >= fontInfoStruct->startChar && symbol <= fontInfoStruct->endChar)
+	{
+		for(uint16_t fontDescptrBlockNum = 0; fontDescptrBlockNum < fontInfoStruct->charBlockArrayAmount; fontDescptrBlockNum++)
+		{
+			if(symbol >= fontInfoStruct->fontCharInfoLookupArray[fontDescptrBlockNum].startChar && symbol <= fontInfoStruct->fontCharInfoLookupArray[fontDescptrBlockNum].endChar)
+			{
+				symbolOffset	=	fontInfoStruct->fontCharInfoLookupArray[fontDescptrBlockNum].startChar;
+				symbolWidth		=	fontInfoStruct->fontCharInfoLookupArray[fontDescptrBlockNum].descriptorsBlockArray[symbol - symbolOffset][0];
+				symbolHeight	=	fontInfoStruct->fontCharInfoLookupArray[fontDescptrBlockNum].descriptorsBlockArray[symbol - symbolOffset][1];
+				
+				for(uint8_t width = 0; width < symbolWidth; width++)
+				{
+					i = 0;
+					for(uint8_t height = symbolHeight; height > 0; height--)
+					{
+						symbolByte = fontInfoStruct->charBitmapArray[fontInfoStruct->fontCharInfoLookupArray[fontDescptrBlockNum].descriptorsBlockArray[symbol - symbolOffset][2] + width + i*symbolWidth];
+						for(uint8_t byte = 0; byte < 8; byte++)
+						{
+							if(symbolByte & (1 << byte))
+								LCD_drawPixel(x, (y + height*8 - byte), fontColor);
+						}
+						i++;
+					}
+					x++;
+				}
+				
+				return x;
+			}
+		}
+	}
 	
 	return x;
 }
 
-
 // вывод строки
-uint16_t	LCD_printString(uint32_t x, uint32_t y, char* str, uint16_t fontColor)
+uint16_t	LCD_printString(uint32_t x, uint32_t y, char* str, uint16_t fontColor, const struct fontInfo *fontInfoStruct)
 {
 //	x--;
 //	y--;
@@ -261,21 +309,8 @@ uint16_t	LCD_printString(uint32_t x, uint32_t y, char* str, uint16_t fontColor)
 		{
 			x = x + 6;
 		}
-
 		
-		// цифры
-		if(symbol >= 0x2E && symbol <= 0x3B)
-		{
-			x = LCD_printChar(x, y, symbol, fontColor, impact_18ptBitmapsNum, impact_18ptDescriptorsNum, DESCRIPTORSBLOCK0_OFFSET);
-		}
-
-		
-		// Кириллица
-		if(symbol >= 0xC0)
-		{
-			x = LCD_printChar(x, y, symbol, fontColor, impact_18ptBitmaps, impact_18ptDescriptors, DESCRIPTORSBLOCK1_OFFSET);
-		}
-		
+		x = LCD_printChar(x, y, symbol, fontColor, fontInfoStruct);		
 		
 		if(str && symbol != ' ')
 			x = x + 1;
